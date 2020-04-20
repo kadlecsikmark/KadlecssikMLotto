@@ -1,7 +1,7 @@
 {
     "name": "jedlik-typescript-vscode-template",
     "version": "1.0.0",
-    "description": "Jedlik project template for using TypeScript, Jest and Node.js in VS Code.",
+    "description": "2005 emelt informatika éretségi programozás feladata typescript nyelven",
     "engines": {
         "node": "13.x"
     },
@@ -9,7 +9,7 @@
     "repository": {
         "private": true,
         "type": "git",
-        "url": "https://github.com/nitslaszlo/JedlikTsTemplate"
+        "url": "https://github.com/kadlecsikmark/KadlecssikMLotto"
     },
     "scripts": {
         "start": "node ./dist/App.js",
@@ -20,7 +20,7 @@
         "test": "jest || ECHO.",
         "dev": "nodemon"
     },
-    "author": "Nits László",
+    "author": "Kadlecsik Márk",
     "license": "MIT",
     "dependencies": {
         "tslib": "^1.11.1"
