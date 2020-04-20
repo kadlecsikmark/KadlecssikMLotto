@@ -4,6 +4,7 @@ export default class Lotto {
     private _szam3: number;
     private _szam4: number;
     private _szam5: number;
+    private _hetszama: number;
     constructor(sor: string) {
         const m: string[] = sor.split(" ");
         this._szam1 = parseInt(m[0]);
@@ -11,6 +12,10 @@ export default class Lotto {
         this._szam3 = parseInt(m[2]);
         this._szam4 = parseInt(m[3]);
         this._szam5 = parseInt(m[4]);
+        this._hetszama = parseInt(m[5]);
+    }
+    public get hetszama(): number {
+        return this._hetszama;
     }
     public get szam1(): number {
         return this._szam1;

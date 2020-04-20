@@ -27,8 +27,8 @@ export default class Content {
         //1. Kérje be a felhasználótól az 52. hét megadott lottószámait!
         res.write("1. feladat:\t");
         const params = url.parse(req.url as string, true).query;
-        const szamok = params.szamok as string;
         res.write("<p>\tAdd meg a Lottószámokat szóközzel válaszd el.!: <input type='string' name='szamok'  style='width:3em;' onChange='this.form.submit();'></p>");
+        const szamok = params.szamok as string;
         const m: string[] = szamok.split(" ");
         const szam52het: number[] = [];
         szam52het.push(parseInt(m[0]));
@@ -57,9 +57,10 @@ export default class Content {
         // 6. A lottosz.dat állományban lévő adatok alapján állapítsa meg, hogy hányszor volt páratlan szám a kihúzott lottószámok között! Az eredményt a képernyőre írja ki!
         res.write("6. feladat:\t");
         res.write(`<p>${megold.paratlan}\t<p>`);
-        // 7. Fűzze hozzá a lottosz.dat állományból beolvasott lottószámok után a felhasználótólbekért, és rendezett 52. hét lottószámait, majd írja ki az összes lottószámot a lotto52.kiszöveges fájlba! A fájlban egy sorba egy hét lottószámai kerüljenek, szóközzel elválasztva egymástól!
+        // 7. Fűzze hozzá a lottosz.dat állományból beolvasott lottószámok után a felhasználótólbekért, és rendezett 52. hét lottószámait, majd írja ki az összes lottószámot a lotto52.ki szöveges fájlba! A fájlban egy sorba egy hét lottószámai kerüljenek, szóközzel elválasztva egymástól!
         res.write("7. feladat:\t");
-        const utolsohet = params.szamok as string;
+        megold.heteskiir("lotto52_ki.txt"); //megold.heteskiir("lotto52_ki.txt",szam52het[]);
+        //const utolsohet = params.szamok as string;
         // 8. Határozza meg a lotto52.ki állomány adatai alapján, hogy az egyes számokat hányszor húzták ki 2003-ban. Az eredményt írja ki a képernyőre a következő formában: az első sor első eleme az a szám legyen ahányszor az egyest kihúzták! Az első sor második eleme az az érték legyen, ahányszor a kettes számot kihúzták stb.! (Annyit biztosan tudunk az értékekről, hogy mindegyikük egyjegyű.)
         res.write("8. feladat:\t");
         res.write(`<p>${megold.nyolcas}\t<p>`);

@@ -4,13 +4,16 @@ import Lotto from "./Lotto";
 
 export default class Megoldas {
     Lottok: Lotto[] = [];
+    darab: number = 0;
     constructor(forrás: string) {
         fs.readFileSync(forrás)
             .toString()
             .split("\n")
             .forEach(i => {
-                const aktSor = i.trim();
+                let aktSor = i.trim();
+                aktSor += " " + this.darab;
                 if (aktSor.length > 0) this.Lottok.push(new Lotto(aktSor));
+                this.darab++;
             });
     }
     public get hanyadik(): Lotto[] {
@@ -18,15 +21,14 @@ export default class Megoldas {
     }
 
     public get nemvoltszam(): string {
-        let j = 1;
         let tarol = "";
+        let j = 1;
         for (const i of this.Lottok) {
             if (i.szam1 == j || i.szam2 == j || i.szam3 == j || i.szam4 == j || i.szam1 == j) {
-                j++;
-                return "Van";
-            } else {
-                j++;
                 tarol = "Nincs";
+                j++;
+            } else if (!(i.szam1 == j || i.szam2 == j || i.szam3 == j || i.szam4 == j || i.szam1 == j) && i.hetszama == 51) {
+                return "Van";
             }
         }
         return tarol;
@@ -48,6 +50,15 @@ export default class Megoldas {
             }
         }
         return db;
+    }
+    public heteskiir(állomány: string): void {
+        // szam52het: string[]
+        const ki: string[] = [];
+        this.Lottok.forEach(js => {
+            ki.push([js.szam1, js.szam2, js.szam3, js.szam4, js.szam5].join(" "));
+        });
+        //ki.push([szam52het[0], szam52het[1], szam52het[2], szam52het[3], szam52het[4]].join(" "));
+        fs.writeFileSync(állomány, ki.join("\r\n"));
     }
     public get nyolcas(): string {
         let db: number;
